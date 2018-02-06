@@ -1,7 +1,19 @@
 ----------------------
-CMSC691 Assignment 6
+3D Fluids Simulation
 ----------------------
-Xiaoxia Zheng / CE83376
+This project is a gridbase 3d fluids simulation. The particles will move based on their initial velocity and interactions with other particles through the background grid. There are five basic functions, one that transfers velocity from the particles to the grid, one that transfers velocity updates from the grid to the particles, then add gravity int the z-direction, enforce slip boundary conditions, compute a pressure field. And subtract the gradient of the pressure to enforce the divergence free condition. Finally advect the particles through the grid's velocity field. Each timestep you should advect the particles, transfer velocities from the particles to the grid, and then transfer updates from the grid to the particle. Using simple Euler integration to advect the particles. A staggered grid for storing the velocity field (i.e. the x-component of the velocity on x-faces, the y-component on y-faces, and the z-component on z-faces). Using trilinear weight functions for transfers between the grid and the particles (and vice versa). The boundary cells have zero velocity and particles never enter these cells.
+
+
+
+
+------------------
+Input File Format
+------------------
+The main input file will be in .json format. This file will specify the main simulation parameters and one particle file. Particle fils
+The first line will be the number of particles. Each subsequent line will have six floating point values giving the initial position (x, y, z) and velocity (u, v, w) of the particle.
+
+
+
 
 
 ----------------------
@@ -12,23 +24,7 @@ Example: ./main input.json output-%05d.part
 	"input.json" is the file that we need to input
 	"output-%05d.part" is the format that we output the files. 
 
------------------
-Project sturcture
------------------
-1. Read all input files.
-2. Do advection of all particles and update their new position.
-3. Convert particle velocity to the grid.
-4. Add gravity in the z-direction, enforce slip boundary conditions.
-5. Enforce the divergence free condition. I set the threshole as 1e-6.
-6. Convert grid velocity back to the particle.
-7. Output files.
 
 
-------------------------------------    
-Problems I met and resource I use
-------------------------------------
-1. Materials that the professor provided help a lot.
-2. I also read a CMU slice about grid base fluid animation, it helps me too.
-3. And there is a video helps me , the link is: https://www.youtube.com/watch?v=6C0MYfjmtoo&t=3106s
 
 
